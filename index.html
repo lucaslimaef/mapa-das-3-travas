@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0d1117">
+<meta name="robots" content="noindex">
+<title>Mapa das 3 Travas · onde teu corpo travou</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','264800457918824');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=264800457918824&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+<style>
+  :root{
+    --bg:#0d1117;--surface:#161b22;--surface2:#1c2230;--border:#30363d;
+    --text:#e6edf3;--muted:#8b949e;--accent:#7c3aed;--accent2:#f59e0b;
+    --lemon:#f4d03f;--success:#4ade80;--danger:#f43f5e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);
+    line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:60px}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px}
+  .pill{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;
+    color:var(--accent2);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.28);border-radius:99px;padding:6px 14px}
+
+  header{padding:56px 0 30px;border-bottom:1px solid var(--border);
+    background:radial-gradient(900px 380px at 20% -20%,rgba(124,58,237,.18),transparent 60%)}
+  h1{font-size:clamp(28px,6.5vw,42px);font-weight:800;letter-spacing:-1px;line-height:1.1;margin:18px 0 14px}
+  h1 b{color:var(--accent)}
+  .lead{color:var(--muted);font-size:17px;max-width:560px}
+
+  section{padding:34px 0;border-bottom:1px solid var(--border)}
+  h2{font-size:clamp(21px,5vw,27px);font-weight:800;letter-spacing:-.5px;margin-bottom:14px}
+  h2 .em{color:var(--accent)}
+  p{margin-bottom:14px}.muted{color:var(--muted)}
+
+  /* WIZARD */
+  .wizard{background:linear-gradient(180deg,var(--surface),rgba(22,27,34,.5));
+    border:1px solid var(--border);border-radius:18px;padding:22px;margin-top:8px;min-height:300px}
+  .progress{display:flex;gap:6px;margin-bottom:20px}
+  .progress span{flex:1;height:5px;border-radius:99px;background:var(--surface2)}
+  .progress span.on{background:var(--accent)}
+  .progress span.done{background:var(--success)}
+  .test{display:none}.test.on{display:block;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .test .kicker{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);font-weight:700}
+  .test h3{font-size:21px;font-weight:800;margin:6px 0 4px}
+  .test .zone{font-size:13.5px;color:var(--muted);margin-bottom:14px}
+  .howto{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:15px;margin-bottom:8px}
+  .howto ol{margin:0;padding-left:20px}.howto li{margin-bottom:7px;font-size:14.5px}
+  .flag{font-size:13.5px;color:var(--accent2);background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.22);
+    border-radius:10px;padding:11px 14px;margin:12px 0 18px}
+  .flag b{color:var(--text)}
+  .answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .ans{border:1px solid var(--border);background:var(--surface2);border-radius:12px;padding:14px;
+    font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--text);transition:.15s}
+  .ans.pass:hover{border-color:var(--success);color:var(--success)}
+  .ans.fail:hover{border-color:var(--danger);color:var(--danger)}
+
+  /* RESULT MAP */
+  .map{display:none;animation:fade .4s ease}.map.on{display:block}
+  .map h3{font-size:22px;font-weight:800;margin-bottom:4px}
+  .map .sum{color:var(--muted);font-size:14px;margin-bottom:18px}
+  .trava{border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px}
+  .trava.bad{border-color:rgba(244,63,94,.45);background:rgba(244,63,94,.06)}
+  .trava.ok{border-color:rgba(74,222,128,.35);background:rgba(74,222,128,.05)}
+  .trava .top{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;margin-bottom:6px}
+  .badge{font-size:11px;font-weight:800;padding:3px 9px;border-radius:7px;letter-spacing:.4px}
+  .badge.bad{background:var(--danger);color:#fff}.badge.ok{background:var(--success);color:#0d1117}
+  .trava .fix{font-size:14px;color:var(--muted)}.trava .fix b{color:var(--text)}
+  .restart{background:none;border:1px solid var(--border);color:var(--muted);border-radius:10px;
+    padding:10px 16px;font-family:inherit;font-weight:600;cursor:pointer;margin-top:6px}
+
+  .reveal{border-top:2px solid var(--accent)}
+  .reveal h2 small{display:block;font-size:13px;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+  .reveal a{color:var(--accent);font-weight:600;text-decoration:none}
+
+  .offer{background:linear-gradient(155deg,rgba(124,58,237,.22),rgba(245,158,11,.05));
+    border:1px solid rgba(124,58,237,.42);border-radius:20px;padding:26px 22px;text-align:center;margin-top:10px}
+  .offer .eye{color:var(--lemon);font-weight:700;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase}
+  .offer h2{margin:10px 0 14px}
+  .offer .price{font-size:46px;font-weight:900;letter-spacing:-2px;margin:6px 0}
+  .offer .price small{font-size:18px;color:var(--muted);font-weight:600}
+  .offer .feats{list-style:none;text-align:left;max-width:360px;margin:16px auto}
+  .offer .feats li{padding-left:30px;position:relative;margin-bottom:9px;font-size:14.5px}
+  .offer .feats li::before{content:"✓";position:absolute;left:0;color:var(--success);font-weight:900}
+  .cta{display:inline-block;background:linear-gradient(100deg,var(--accent),#9333ea);color:#fff;text-decoration:none;
+    font-weight:800;font-size:17px;padding:16px 34px;border-radius:99px;margin-top:8px;box-shadow:0 8px 28px rgba(124,58,237,.4);transition:.15s}
+  .cta:hover{filter:brightness(1.1);transform:translateY(-1px)}
+  .offer .sub{color:var(--muted);font-size:12.5px;margin-top:12px}
+  .ps{border-left:3px solid var(--accent);background:var(--surface);border-radius:0 12px 12px 0;padding:16px 18px;margin-top:26px;font-size:14.5px;color:var(--muted)}
+  .ps a{color:var(--accent);font-weight:600;text-decoration:none}
+  footer{text-align:center;color:var(--muted);font-size:12.5px;padding:30px 20px 0}
+  .disc{font-size:12px;color:var(--muted);margin-top:14px;font-style:italic}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="pill">Teste guiado · 90 segundos</span>
+    <h1>O <b>Mapa das 3 Travas</b>: descubra onde teu corpo travou (e por que a dor muda de lugar)</h1>
+    <p class="lead">A dor que some com remédio e volta noutro canto raramente nasce onde dói. Esses 3 testes rápidos mostram a origem.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>A dor <span class="em">viaja</span>. A causa fica.</h2>
+    <p>Você resolve a lombar e, semanas depois, começa o joelho. Depois o ombro. Parece azar, mas o corpo trabalha em rede: quando um ponto trava, a articulação do lado paga a conta.</p>
+    <p class="muted">Quase sempre o problema mora em 3 lugares: tornozelo, quadril e a parte alta das costas. Vamos testar os teus agora.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="wizard">
+      <div class="progress"><span class="on" id="p0"></span><span id="p1"></span><span id="p2"></span></div>
+
+      <div class="test on" data-i="0">
+        <span class="kicker">Trava 1 de 3</span>
+        <h3>Tornozelo</h3>
+        <div class="zone">Onde mais cobra: joelho e lombar</div>
+        <div class="howto"><ol>
+          <li>Fica de pé e agacha o mais fundo que conseguir.</li>
+          <li>Mantém os pés inteiros no chão o tempo todo.</li>
+        </ol></div>
+        <div class="flag"><b>Travou se:</b> o calcanhar subiu, ou você caiu pra trás.</div>
+        <div class="answers">
+          <button class="ans pass" data-r="ok">Passei, fui fundo</button>
+          <button class="ans fail" data-r="bad">Travei</button>
+        </div>
+      </div>
+
+      <div class="test" data-i="1">
+        <span class="kicker">Trava 2 de 3</span>
+        <h3>Quadril</h3>
+        <div class="zone">Onde mais cobra: lombar e joelho</div>
+        <div class="howto"><ol>
+          <li>Sentado numa cadeira, cruza um tornozelo sobre o joelho oposto (número 4).</li>
+          <li>Inclina o tronco pra frente mantendo as costas retas.</li>
+        </ol></div>
+        <div class="flag"><b>Travou se:</b> um lado abre muito menos que o outro, ou dói na virilha.</div>
+        <div class="answers">
+          <button class="ans pass" data-r="ok">Passei, abre igual</button>
+          <button class="ans fail" data-r="bad">Travei</button>
+        </div>
+      </div>
+
+      <div class="test" data-i="2">
+        <span class="kicker">Trava 3 de 3</span>
+        <h3>Parte alta das costas</h3>
+        <div class="zone">Onde mais cobra: pescoço e ombro</div>
+        <div class="howto"><ol>
+          <li>Sentado, braços cruzados no peito.</li>
+          <li>Gira o tronco pra um lado e pro outro, sem mexer o quadril.</li>
+        </ol></div>
+        <div class="flag"><b>Travou se:</b> você gira pouco, ou roda muito mais pra um lado.</div>
+        <div class="answers">
+          <button class="ans pass" data-r="ok">Passei, giro bem</button>
+          <button class="ans fail" data-r="bad">Travei</button>
+        </div>
+      </div>
+
+      <div class="map" id="map">
+        <h3>Teu mapa está pronto</h3>
+        <div class="sum" id="sum"></div>
+        <div id="travas"></div>
+        <button class="restart" id="restart">Refazer o teste</button>
+      </div>
+    </div>
+    <p class="disc">Conteúdo educativo. Dor forte, recente ou com inchaço pede avaliação de um profissional de saúde antes de treinar.</p>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <h2><small>Quem escreveu isso?</small>Eu sou o Lucas, personal trainer</h2>
+    <p>Eu trabalho com gente que convive com dor que vai e volta há anos, ouvindo que é "desgaste" e que é pra descansar. Quase sempre o caminho é o contrário: destravar e fortalecer.</p>
+    <p class="muted">Mostro o método completo no meu Instagram, <a href="https://instagram.com/personaltrainerlucaslima" target="_blank" rel="noopener">@personaltrainerlucaslima</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="offer">
+      <span class="eye">Próximo passo</span>
+      <h2>Treino Express</h2>
+      <p class="muted">Um treino pronto de 30 minutos que já trabalha mobilidade e força nos pontos que mais travam, pra fazer em casa sem equipamento.</p>
+      <ul class="feats">
+        <li>Destrava tornozelo, quadril e costas altas</li>
+        <li>Fortalece em volta pra dor não voltar</li>
+        <li>30 minutos, passo a passo</li>
+        <li>Acesso pra sempre</li>
+      </ul>
+      <div class="price">€7 <small>uma vez só</small></div>
+      <a class="cta" id="ctaStripe" href="https://buy.stripe.com/9B67sN9W5ceNaW4aNw08g00?ref=mapa-das-3-travas" target="_blank" rel="noopener">Quero o meu Treino Express</a>
+      <p class="sub">Pagamento seguro. Acesso na hora.</p>
+    </div>
+    <div class="ps">
+      <b>P.S.</b> Se a tua dor é antiga e você quer um plano feito pro teu caso, com acompanhamento, eu atendo por consultoria mensal. <a href="https://ptlucaslima.pt/#consultoria" target="_blank" rel="noopener">Vê como funciona aqui.</a>
+    </div>
+  </div>
+</section>
+
+<footer>© Lucas Lima · ptlucaslima.pt · @personaltrainerlucaslima</footer>
+
+<script>
+(function(){
+  var tests=document.querySelectorAll('.test');
+  var prog=[document.getElementById('p0'),document.getElementById('p1'),document.getElementById('p2')];
+  var res=[null,null,null];var cur=0;
+  var info=[
+    {nome:'Tornozelo',fixBad:'<b>Destrava:</b> mobilidade de tornozelo na parede. Joelho à frente passando da ponta do pé, calcanhar fixo, 2x15 cada lado.',fixOk:'Tornozelo livre. Mantém com agachamentos profundos no aquecimento.'},
+    {nome:'Quadril',fixBad:'<b>Destrava:</b> alongamento do número 4 deitado, 40s cada lado, e ponte de glúteo 3x12 pra ativar o que estava preso.',fixOk:'Quadril com boa amplitude. Segue fortalecendo glúteo pra manter.'},
+    {nome:'Costas altas',fixBad:'<b>Destrava:</b> rotação torácica deitado de lado (joelhos dobrados, abre o braço de cima), 10 giros cada lado, todo dia.',fixOk:'Boa rotação. Mantém com remadas e mobilidade no aquecimento.'}
+  ];
+  function show(i){
+    tests.forEach(function(t){t.classList.remove('on')});
+    prog.forEach(function(p,idx){p.className=idx<i?'done':(idx===i?'on':'')});
+    if(i<3){tests[i].classList.add('on');}
+    else{render();}
+  }
+  document.querySelectorAll('.ans').forEach(function(b){
+    b.addEventListener('click',function(){
+      res[cur]=b.dataset.r;cur++;show(cur);
+    });
+  });
+  function render(){
+    document.querySelector('.map').classList.add('on');
+    prog.forEach(function(p){p.className='done'});
+    var bad=res.filter(function(r){return r==='bad'}).length;
+    var sum=document.getElementById('sum');
+    if(bad===0){sum.textContent='Nenhuma trava grave hoje. Teu trabalho é manter, com mobilidade no aquecimento e força constante.';}
+    else if(bad===1){sum.textContent='1 trava encontrada. É bem provável que ela esteja por trás da dor que vai e volta. Começa por ela.';}
+    else{sum.textContent=bad+' travas encontradas. Por isso a dor muda de lugar: o corpo está compensando em vários pontos. Destrava na ordem abaixo.';}
+    var box=document.getElementById('travas');box.innerHTML='';
+    res.forEach(function(r,i){
+      var bad=r==='bad';
+      var el=document.createElement('div');el.className='trava '+(bad?'bad':'ok');
+      el.innerHTML='<div class="top">'+info[i].nome+' <span class="badge '+(bad?'bad':'ok')+'">'+(bad?'TRAVADO':'LIVRE')+'</span></div>'+
+        '<div class="fix">'+(bad?info[i].fixBad:info[i].fixOk)+'</div>';
+      box.appendChild(el);
+    });
+    if(window.fbq){fbq('trackCustom','MapaTravasGerado',{travas:bad});}
+    document.querySelector('.map').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  document.getElementById('restart').addEventListener('click',function(){
+    res=[null,null,null];cur=0;document.querySelector('.map').classList.remove('on');show(0);
+  });
+  var cta=document.getElementById('ctaStripe');
+  if(cta){cta.addEventListener('click',function(){if(window.fbq){fbq('track','InitiateCheckout',{value:7,currency:'EUR'});}});}
+})();
+</script>
+</body>
+</html>
